@@ -8,12 +8,52 @@ namespace ToDoList.Models
 {
     class ToDoModel
     {
-        public string Name;
 
         private bool _isDone;
 
         private string _text;
 
+        private int _priority;
+
+        private string _category;
+
+        private string _deadline;
+
+        public int Priority
+        {
+            get
+            {
+                return _priority;
+            }
+            set
+            {
+
+            }
+        }
+
+        public string Category
+        {
+            get
+            {
+                return _category;
+            }
+            set
+            {
+
+            }
+        }
+
+        public string Deadline
+        {
+            get
+            {
+                return _deadline;
+            }
+            set
+            {
+
+            }
+        }
 
 
         public bool IsDone

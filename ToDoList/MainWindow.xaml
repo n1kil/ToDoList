@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoList"
         mc:Ignorable="d"
-        Title="ToDoList" Height="450" Width="800">
+        Title="ToDoList" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dgToDoApp" FontSize="16" FontWeight="Bold" Margin="10" SelectionChanged="dgToDoApp_SelectionChanged">
+        <DataGrid x:Name="dgToDoApp" FontSize="16" FontWeight="Bold" Margin="10" SelectionChanged="dgToDoApp_SelectionChanged" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly ="false" Header="Задача" Width="200"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly ="false" Header="Приоритет" Width="10"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly ="false" Header="Категория" Width="70"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly ="false" Header="Дедлайн" Width="100"></DataGridTextColumn>
-                <DataGridCheckBoxColumn IsReadOnly ="false" Header="Выполнена ли задача?"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Binding ="{Binding Path=Text}" IsReadOnly ="false" Header="Задача" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding Path=Priority}" IsReadOnly ="false" Header="Приоритет" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding Path=Category}" IsReadOnly ="false" Header="Категория" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding Path=Deadline}" IsReadOnly ="false" Header="Дедлайн" Width="100"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Binding ="{Binding Path=IsDone}" IsReadOnly ="false" Header="Выполнена ли задача?" Width="190"></DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
