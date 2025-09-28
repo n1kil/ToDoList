@@ -24,5 +24,10 @@ namespace ToDoList
         {
             InitializeComponent();
         }
+
+        private void dgToDoApp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

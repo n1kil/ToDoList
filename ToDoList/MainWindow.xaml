@@ -7,14 +7,13 @@
         mc:Ignorable="d"
         Title="ToDoList" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dg.ToDoApp">
+        <DataGrid x:Name="dgToDoApp" FontSize="16" FontWeight="Bold" Margin="10" SelectionChanged="dgToDoApp_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название задачи"></DataGridTextColumn>
-                <DataGridTextColumn Header="Описание"></DataGridTextColumn>
-                <DataGridTextColumn Header="Приоритет"></DataGridTextColumn>
-                <DataGridTextColumn Header="Категория"></DataGridTextColumn>
-                <DataGridTextColumn Header="Дедлайн"></DataGridTextColumn>
-                <DataGridCheckBoxColumn Header="Выполнена ли задача?"></DataGridCheckBoxColumn>
+                <DataGridTextColumn IsReadOnly ="false" Header="Задача" Width="200"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly ="false" Header="Приоритет" Width="10"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly ="false" Header="Категория" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly ="false" Header="Дедлайн" Width="100"></DataGridTextColumn>
+                <DataGridCheckBoxColumn IsReadOnly ="false" Header="Выполнена ли задача?"></DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
