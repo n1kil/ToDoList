@@ -13,7 +13,7 @@
                 <DataGridTextColumn Binding ="{Binding Path=Priority}" IsReadOnly ="false" Header="Приоритет" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Binding ="{Binding Path=Category}" IsReadOnly ="false" Header="Категория" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Binding ="{Binding Path=Deadline}" IsReadOnly ="false" Header="Дедлайн" Width="100"></DataGridTextColumn>
-                <DataGridCheckBoxColumn Binding ="{Binding Path=IsDone}" IsReadOnly ="false" Header="Выполнена ли задача?" Width="190"></DataGridCheckBoxColumn>
+                <DataGridCheckBoxColumn Binding ="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}" IsReadOnly ="false" Header="Выполнена ли задача?" Width="190"></DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

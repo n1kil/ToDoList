@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ToDoList.Models
 {
-    class ToDoModel
+    class ToDoModel : INotifyPropertyChanged
     {
 
         private bool _isDone;
@@ -19,6 +20,8 @@ namespace ToDoList.Models
 
         private string _deadline;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int Priority
         {
             get
@@ -27,7 +30,10 @@ namespace ToDoList.Models
             }
             set
             {
+                if (_priority == value) return;
                 _priority = value;
+                // строчка ниже в свойствах нужна при изменении полей задач в самом приложении
+                OnPropertyChanged("Priority");
             }
         }
 
@@ -39,7 +45,9 @@ namespace ToDoList.Models
             }
             set
             {
+                if (_category == value) return;
                 _category = value;
+                OnPropertyChanged("Category");
             }
         }
 
@@ -51,7 +59,9 @@ namespace ToDoList.Models
             }
             set
             {
+                if (_deadline == value) return;
                 _deadline = value;
+                OnPropertyChanged("Deadline");
             }
         }
 
@@ -64,7 +74,9 @@ namespace ToDoList.Models
             }
             set
             {
+                if(_isDone == value) return;
                 _isDone = value;
+                OnPropertyChanged("IsDone");
             }
         }
 
@@ -76,7 +88,9 @@ namespace ToDoList.Models
             }
             set
             {
+                if (_text == value) return;
                 _text = value;
+                OnPropertyChanged("Text");
             }
         }
 
@@ -84,6 +98,13 @@ namespace ToDoList.Models
         {
             _text = "новая задача";
             _isDone = false;
+            _priority = 0;
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName="")
+        {
+            // проверка на null
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 

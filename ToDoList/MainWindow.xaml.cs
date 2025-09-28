@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ToDoList.Models;
+using ToDoList.Services;
 
 namespace ToDoList
 {
@@ -22,28 +23,57 @@ namespace ToDoList
     /// </summary>
     public partial class MainWindow : Window
     {
-        private BindingList<ToDoModel> _toDoData;
+        private readonly string PATH = $"{Environment.CurrentDirectory}\\todoDataList.json";
+
+        private BindingList<ToDoModel> _toDoDataList;
+
+        private FileIOServices _fileIOServices;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        //private void dgToDoApp_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-
-        //}
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _toDoData = new BindingList<ToDoModel>()
+            _fileIOServices = new FileIOServices(PATH);
+
+            try
             {
-                new ToDoModel(){Text = "fgdgd", IsDone = true},
-                new ToDoModel(){Text = "test"}
-            };
+                _toDoDataList = _fileIOServices.LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                this.Close();
+               
+            }
+            
+            
 
 
 
-            dgToDoApp.ItemsSource = _toDoData;
+            dgToDoApp.ItemsSource = _toDoDataList;
+            _toDoDataList.ListChanged += _toDoDataList_ListChanged;
+
+        }
+
+        // сохранение на жёсткий диск
+        private void _toDoDataList_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if(e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                try
+                {
+                    _fileIOServices.SaveData(sender);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    this.Close();
+
+                }
+            }
         }
     }
 }
