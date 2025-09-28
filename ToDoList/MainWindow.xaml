@@ -7,13 +7,34 @@
         mc:Ignorable="d"
         Title="ToDoList" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dgToDoApp" FontSize="16" FontWeight="Bold" Margin="10" AutoGenerateColumns="False">
+        <DataGrid x:Name="dgToDoApp" 
+                  FontSize="16" 
+                  FontWeight="Bold" 
+                  Margin="10" 
+                  AutoGenerateColumns="False" 
+                  CanUserSortColumns="True" 
+                  IsReadOnly="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding ="{Binding Path=Text}" IsReadOnly ="false" Header="Задача" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding Path=Priority}" IsReadOnly ="false" Header="Приоритет" Width="100"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding Path=Category}" IsReadOnly ="false" Header="Категория" Width="100"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding Path=Deadline}" IsReadOnly ="false" Header="Дедлайн" Width="100"></DataGridTextColumn>
-                <DataGridCheckBoxColumn Binding ="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}" IsReadOnly ="false" Header="Выполнена ли задача?" Width="190"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Binding="{Binding Path=Text}" 
+                                    Header="Задача" 
+                                    Width="*"
+                                    SortMemberPath="Text"/>
+                <DataGridTextColumn Binding="{Binding Path=Priority}" 
+                                    Header="Приоритет" 
+                                    Width="100"
+                                    SortMemberPath="Priority"/>
+                <DataGridTextColumn Binding="{Binding Path=Category}" 
+                                    Header="Категория" 
+                                    Width="100"
+                                    SortMemberPath="Category"/>
+                <DataGridTextColumn Binding="{Binding Path=Deadline}" 
+                                    Header="Дедлайн" 
+                                    Width="100"
+                                    SortMemberPath="Deadline"/>
+                <DataGridCheckBoxColumn Binding="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}" 
+                                        Header="Выполнена ли задача?" 
+                                        Width="190"
+                                        SortMemberPath="IsDone"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

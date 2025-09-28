@@ -1,32 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ToDoList.Models;
 using ToDoList.Services;
 
 namespace ToDoList
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly string PATH = $"{Environment.CurrentDirectory}\\todoDataList.json";
 
-        private BindingList<ToDoModel> _toDoDataList;
-
+        private ObservableCollection<ToDoModel> _toDoDataList;
         private FileIOServices _fileIOServices;
 
         public MainWindow()
@@ -40,39 +25,33 @@ namespace ToDoList
 
             try
             {
-                _toDoDataList = _fileIOServices.LoadData();
+                var loadedData = _fileIOServices.LoadData();
+                _toDoDataList = new ObservableCollection<ToDoModel>(loadedData);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 this.Close();
-               
+                return;
             }
-            
-            
-
-
 
             dgToDoApp.ItemsSource = _toDoDataList;
-            _toDoDataList.ListChanged += _toDoDataList_ListChanged;
 
+            // подписка на изменения (добавление, удаление)
+            _toDoDataList.CollectionChanged += _toDoDataList_CollectionChanged;
         }
 
-        // сохранение на жёсткий диск
-        private void _toDoDataList_ListChanged(object sender, ListChangedEventArgs e)
+        // сохранение изменений на диск
+        private void _toDoDataList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if(e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged)
+            try
             {
-                try
-                {
-                    _fileIOServices.SaveData(sender);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    this.Close();
-
-                }
+                _fileIOServices.SaveData(sender);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                this.Close();
             }
         }
     }
