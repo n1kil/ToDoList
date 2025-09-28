@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ToDoList" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dgToDoApp" FontSize="16" FontWeight="Bold" Margin="10" SelectionChanged="dgToDoApp_SelectionChanged" AutoGenerateColumns="False">
+        <DataGrid x:Name="dgToDoApp" FontSize="16" FontWeight="Bold" Margin="10" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding ="{Binding Path=Text}" IsReadOnly ="false" Header="Задача" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Binding ="{Binding Path=Priority}" IsReadOnly ="false" Header="Приоритет" Width="100"></DataGridTextColumn>

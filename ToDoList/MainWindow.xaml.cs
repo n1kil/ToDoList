@@ -28,13 +28,21 @@ namespace ToDoList
             InitializeComponent();
         }
 
-        private void dgToDoApp_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        //private void dgToDoApp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            _toDoData = new BindingList<ToDoModel>()
+            {
+                new ToDoModel(){Text = "fgdgd", IsDone = true},
+                new ToDoModel(){Text = "test"}
+            };
+
+
+
             dgToDoApp.ItemsSource = _toDoData;
         }
     }

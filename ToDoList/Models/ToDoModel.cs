@@ -27,7 +27,7 @@ namespace ToDoList.Models
             }
             set
             {
-
+                _priority = value;
             }
         }
 
@@ -39,7 +39,7 @@ namespace ToDoList.Models
             }
             set
             {
-
+                _category = value;
             }
         }
 
@@ -51,7 +51,7 @@ namespace ToDoList.Models
             }
             set
             {
-
+                _deadline = value;
             }
         }
 
@@ -64,7 +64,7 @@ namespace ToDoList.Models
             }
             set
             {
-
+                _isDone = value;
             }
         }
 
@@ -76,9 +76,16 @@ namespace ToDoList.Models
             }
             set
             {
-
+                _text = value;
             }
         }
+
+        public ToDoModel()
+        {
+            _text = "новая задача";
+            _isDone = false;
+        }
+
 
     }
 
